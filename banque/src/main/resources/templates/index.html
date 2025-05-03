@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Comptes</title>
+    <!-- Lien vers le CDN Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container mt-5">
+        <h1 class="text-center">Liste des Comptes Bancaires</h1>
+
+        <!-- Bouton pour ajouter un compte -->
+        <div class="text-center mb-4">
+            <a th:href="@{/ajouter}" class="btn btn-primary">Ajouter un compte</a>
+        </div>
+
+        <!-- Tableau des comptes -->
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Titulaire</th>
+                    <th>Solde</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="compte : ${comptes}">
+                    <td th:text="${compte.id}">1</td>
+                    <td th:text="${compte.titulaire}">fdg</td>
+                    <td th:text="${compte.solde} + ' DT'">1000</td>
+                    <td>
+                        <a th:href="@{'/details/' + ${compte.id}}" class="btn btn-info btn-sm">Détails</a>
+                        <a th:href="@{'/modifier/' + ${compte.id}}" class="btn btn-warning btn-sm">Modifier</a>
+                        <a th:href="@{'/supprimer/' + ${compte.id}}" class="btn btn-danger btn-sm" onclick="return confirm('Supprimer ce compte ?');">Supprimer</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div> <!-- Fermeture de la div container -->
+
+    <!-- Scripts Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
