@@ -23,19 +23,19 @@ public class CompteController {
     
     @GetMapping("/login")
     public String showLoginForm() {
-        return "login"; // va charger login.html depuis /templates
+        return "login";
     }
 
     @GetMapping("/accueil")
     public String accueil() {
-        return "accueil"; // renvoie vers accueil.html
+        return "accueil"; 
     }
     
     // Liste des comptes
     @GetMapping("/comptes")
     public String afficherComptes(Model model) {
         model.addAttribute("comptes", compteRepository.findAll());
-        return "index"; // index.html pour afficher tous les comptes
+        return "index"; 
     }
 
     // Formulaire d'ajout

@@ -18,38 +18,38 @@ public class SecurityConfig {
     @Autowired
     private CustomUserDetailsService userDetailsService;
 
-    // Configuration de la sécurité des requêtes HTTP
+   
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
                 .requestMatchers("/login").permitAll()  // Autoriser uniquement l'accès à la page /login
-                .anyRequest().authenticated()  // Exiger l'authentification pour les autres pages
+                .anyRequest().authenticated() 
             .and()
             .formLogin()
-                .loginPage("/login")  // La page de login
-                .defaultSuccessUrl("/accueil", true)  // Redirection vers /accueil après connexion réussie
-                .failureUrl("/login?error=true")  // Redirection si échec de l'authentification
+                .loginPage("/login") 
+                .defaultSuccessUrl("/accueil", true)  
+                .failureUrl("/login?error=true")  
                 .permitAll()
             .and()
             .logout()
-                .logoutSuccessUrl("/login?logout=true")  // Redirection après déconnexion
+                .logoutSuccessUrl("/login?logout=true") 
                 .permitAll();
         return http.build();
     }
 
-    // Définir un encodeur pour les mots de passe (BCrypt)
+   
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    // Authentification via DaoAuthenticationProvider
+   
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userDetailsService);  // Spécifier le service pour trouver les utilisateurs
-        authProvider.setPasswordEncoder(passwordEncoder());  // Spécifier l'encodeur de mot de passe
+        authProvider.setUserDetailsService(userDetailsService);  
+        authProvider.setPasswordEncoder(passwordEncoder()); 
         return authProvider;
     }
 }

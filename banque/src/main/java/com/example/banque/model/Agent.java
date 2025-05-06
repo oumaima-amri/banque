@@ -3,7 +3,7 @@ package com.example.banque.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Agent") // ou "agent", si tu préfères comme nom de table
+@Table(name = "Agent")
 public class Agent {
 
     @Id
@@ -16,7 +16,7 @@ public class Agent {
     @Column(nullable = false)
     private String password;
 
-    // Constructeurs
+    
     public Agent() {
     }
 
@@ -25,7 +25,7 @@ public class Agent {
         this.password = password;
     }
 
-    // Getters et Setters
+    
     public Long getId() {
         return id;
     }

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modifier un Compte</title>
-    <!-- Lien vers le CDN Bootstrap -->
+   
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
@@ -82,14 +82,14 @@
     <h2 class="text-center">Modifier les Informations du Compte</h2>
     <div class="divider"></div>
 
-    <!-- Formulaire pour modifier le compte -->
+    
     <div class="card">
         <div class="card-header">
             Modifier les informations du titulaire
         </div>
         <div class="card-body">
             <form th:action="@{'/modifier/' + ${compte.id}}" th:object="${compte}" method="post">
-                <!-- Champ caché pour l'id -->
+                <!-- Champ cache pour l'id -->
                 <input type="hidden" th:field="*{id}" />
 
                 <div class="form-group">
@@ -106,7 +106,7 @@
     </div>
 </div>
 
-<!-- Scripts Bootstrap -->
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
