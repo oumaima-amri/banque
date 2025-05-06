@@ -1,24 +1,113 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Modifier un compte</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier un Compte</title>
+    <!-- Lien vers le CDN Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f7f7f7;
+            font-size: 0.9rem;
+        }
+        .card {
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+        }
+        .card-header {
+            background-color: #97b4d1;
+            color: white;
+            font-weight: 600;
+            font-size: 1.2rem;
+            border-radius: 1rem 1rem 0 0;
+        }
+        .card-body {
+            padding: 2rem;
+        }
+        h2 {
+            font-weight: 600;
+            color: #040404;
+            font-size: 1.4rem;
+            margin-bottom: -10px;
+        }
+        .btn-custom {
+            border-radius: 50px;
+            padding: 10px 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .form-control {
+            border-radius: 10px;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12);
+            font-size: 0.9rem;
+        }
+        label {
+            font-weight: 500;
+            font-size: 1rem;
+            color: #0b0b0b;
+        }
+        .btn-light-custom {
+            background-color: #e9ecef;
+            border-color: #d6d8db;
+        }
+        .btn-light-custom:hover {
+            background-color: #ced4da;
+        }
+        .divider {
+            width: 60px;
+            height: 4px;
+            background-color: #b1c5e1;
+            margin: 25px auto;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .card-body a {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .form-group label {
+            font-weight: 600;
+        }
+    </style>
 </head>
-<body class="container mt-4">
-    <h2>Modifier le titulaire</h2>
+<body>
 
-    <!-- th:object doit être utilisé AVANT d'utiliser *{} -->
-    <form th:action="@{'/modifier/' + ${compte.id}}" th:object="${compte}" method="post">
-        <!-- Champ caché pour l'id (important pour que le formulaire garde l'objet complet) -->
-        <input type="hidden" th:field="*{id}" />
+<div class="container py-5">
+    <h2 class="text-center">Modifier les Informations du Compte</h2>
+    <div class="divider"></div>
 
-        <div class="mb-3">
-            <label class="form-label">Nouveau titulaire :</label>
-            <input type="text" class="form-control" th:field="*{titulaire}" required />
+    <!-- Formulaire pour modifier le compte -->
+    <div class="card">
+        <div class="card-header">
+            Modifier les informations du titulaire
         </div>
+        <div class="card-body">
+            <form th:action="@{'/modifier/' + ${compte.id}}" th:object="${compte}" method="post">
+                <!-- Champ caché pour l'id -->
+                <input type="hidden" th:field="*{id}" />
 
-        <button type="submit" class="btn btn-success">Enregistrer</button>
-        <a href="/comptes" class="btn btn-secondary">Annuler</a>
-    </form>
+                <div class="form-group">
+                    <label for="titulaire">Nouveau Titulaire :</label>
+                    <input type="text" class="form-control" id="titulaire" th:field="*{titulaire}" required />
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success btn-custom" style="background-color: rgb(57, 210, 57); border-color: rgb(57, 210, 57);">Enregistrer</button>
+                    <a href="/comptes" class="btn btn-secondary btn-custom" style="background-color: rgb(191, 199, 191);border-color: #f7f7f7; ">Annuler</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

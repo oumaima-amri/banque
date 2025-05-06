@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Accueil Banque</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: url('https://images.unsplash.com/photo-1563013544-824ae1b704d3') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+        }
+
+        .overlay {
+            background-color: rgba(0, 0, 0, 0.65);
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            color: #ffc107;
+        }
+
+        .btn-main {
+            background-color: #ffc107;
+            color: #000;
+            font-weight: bold;
+            border: none;
+            border-radius: 30px;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-main:hover {
+            background-color: #e0a800;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .btn-group-custom {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="overlay"></div>
+
+<div class="content">
+    <h1>Bienvenue chez <span class="highlight">SmartBank</span></h1>
+    <p class="lead">Votre solution moderne pour gérer vos finances simplement.</p>
+
+    <div class="btn-group-custom">
+        <a href="/ajouter" class="btn btn-main">
+            <i class="bi bi-plus-circle me-2"></i>Créer un compte
+        </a>
+        <a href="/comptes" class="btn btn-main">
+            <i class="bi bi-list-ul me-2"></i>Liste des comptes
+        </a>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

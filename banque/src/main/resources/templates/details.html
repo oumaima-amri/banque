@@ -4,57 +4,129 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Détails du Compte</title>
-    <!-- Lien vers le CDN Bootstrap -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f7f8fa;
+            font-size: 1rem; /* Taille de police réduite */
+        }
+        .card {
+            border-radius: 1.2rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .card-header {
+            background-color: #9fbae2;
+            color: white;
+            font-weight: 600;
+            border-radius: 1.2rem 1.2rem 0 0;
+        }
+        .card-body {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 0 0 1.2rem 1.2rem;
+        }
+        h1 {
+            font-weight: 600;
+            color: #000000;
+            font-size: 1.5rem; /* Réduction de la taille du titre */
+        }
+        .btn-custom {
+            border-radius: 25px;
+        }
+        .form-control {
+            border-radius: 10px;
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+            font-size: 0.875rem; /* Taille de texte réduite dans les champs de saisie */
+        }
+        .btn-light-custom {
+            background-color: #e9ecef;
+            border-color: #d6d8db;
+        }
+        .btn-light-custom:hover {
+            background-color: #ced4da;
+        }
+        label {
+            font-weight: 500;
+            font-size: 0.875rem; /* Réduction de la taille de la police des labels */
+        }
+        .divider {
+            width: 50px;
+            height: 4px;
+            background-color: #7da7e7;
+            margin: 20px auto;
+        }
+        .card-body h5 {
+            font-size: 1rem; /* Réduction de la taille des textes dans la carte */
+        }
+        .text-center {
+            font-size: 0.9rem; /* Taille réduite des textes centraux */
+        }
+    </style>
 </head>
 <body>
 
-    <div class="container mt-5">
-        <h1 class="text-center mb-4">Détails du Compte</h1>
+<div class="container py-5">
+    <h1 class="text-center mb-4">Détails du Compte</h1>
+    <div class="divider"></div>
 
-        <!-- Affichage des informations du compte -->
-        <div class="card">
-            <div class="card-header">
-                Compte ID: <span th:text="${compte.id}"></span>
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">Titulaire: <span th:text="${compte.titulaire}"></span></h5>
-                <p class="card-text">Solde actuel: <span th:text="${compte.solde} + ' DT'"></span></p>
-            </div>
+    <!-- Informations du Compte -->
+    <div class="card mb-4">
+        <div class="card-header">
+            Informations du Compte
         </div>
-
-        <div class="mt-4">
-            <!-- Formulaire pour dépôt -->
-            <h3>Dépôt d'argent</h3>
-            <form th:action="@{'/depot/' + ${compte.id}}" method="post">
-                <div class="form-group">
-                    <label for="montantDepot">Montant du dépôt</label>
-                    <input type="number" id="montantDepot" name="montant" class="form-control" placeholder="Montant à déposer" min="0" required>
-                </div>
-                <button type="submit" class="btn btn-success">Déposer</button>
-            </form>
-
-            <!-- Formulaire pour retrait -->
-            <h3 class="mt-4">Retrait d'argent</h3>
-            <form th:action="@{'/retrait/' + ${compte.id}}" method="post">
-                <div class="form-group">
-                    <label for="montantRetrait">Montant du retrait</label>
-                    <input type="number" id="montantRetrait" name="montant" class="form-control" placeholder="Montant à retirer" min="0" required>
-                </div>
-                <button type="submit" class="btn btn-danger">Retirer</button>
-            </form>
-        </div>
-
-        <!-- Retour à la liste des comptes -->
-        <div class="text-center mt-4">
-            <a href="/comptes" class="btn btn-secondary">Retour à la Liste des Comptes</a>
+        <div class="card-body">
+            <h5 class="mb-3"><i class="fas fa-id-card me-2"></i>ID du Compte : <span th:text="${compte.id}"></span></h5>
+            <h5 class="mb-3"><i class="fas fa-user me-2"></i>Titulaire : <span th:text="${compte.titulaire}"></span></h5>
+            <h5><i class="fas fa-wallet me-2"></i>Solde actuel : <span th:text="${compte.solde + ' DT'}"></span></h5>
         </div>
     </div>
 
-    <!-- Lien vers les scripts Bootstrap -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Formulaires Dépôt et Retrait -->
+    <div class="row g-4">
+        <!-- Dépôt -->
+        <div class="col-md-6">
+            <div class="card p-4">
+                <h4 class="text-success mb-3"><i class="fas fa-arrow-down me-2"></i>Dépôt d'argent</h4>
+                <form th:action="@{'/depot/' + ${compte.id}}" method="post">
+                    <div class="mb-3">
+                        <label for="montantDepot">Montant à déposer</label>
+                        <input type="number" id="montantDepot" name="montant" class="form-control" min="0" placeholder="Ex : 200" required>
+                    </div>
+                    <button type="submit" class="btn btn-success btn-custom"><i class="fas fa-plus-circle me-1"></i>Déposer</button>
+                </form>
+            </div>
+        </div>
 
+        <!-- Retrait -->
+        <div class="col-md-6">
+            <div class="card p-4">
+                <h4 class="text-danger mb-3"><i class="fas fa-arrow-up me-2"></i>Retrait d'argent</h4>
+                <form th:action="@{'/retrait/' + ${compte.id}}" method="post">
+                    <div class="mb-3">
+                        <label for="montantRetrait">Montant à retirer</label>
+                        <input type="number" id="montantRetrait" name="montant" class="form-control" min="0" placeholder="Ex : 100" required>
+                    </div>
+                    <button type="submit" class="btn btn-danger btn-custom"><i class="fas fa-minus-circle me-1"></i>Retirer</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Retour -->
+    <div class="text-center mt-5">
+        <a href="/comptes" class="btn btn-light-custom btn-custom">
+            <i class="fas fa-arrow-left me-1"></i>Retour à la Liste des Comptes
+        </a>
+    </div>
+</div>
+
+<!-- Scripts Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
